@@ -14,6 +14,7 @@ import pickle
 import string 
 ## Navigating the database:
 data=pd.read_csv("Data/songlyrics/songdata.csv")
+data=data.dropna()
 print("Number of Artist: "+str(len(set(data.artist))))
 unique_words=set()
 for song in data.text.to_list():
@@ -38,16 +39,16 @@ plt.show()
 ########
 #Prepearing the first database: 
 goodInputSong=True
-acceptableChars=string.ascii_lowercase +string.ascii_uppercase+string.punctuation 
+acceptableChars=string.ascii_lowercase +string.ascii_uppercase+string.punctuation+"\n"
 songCorpa=""
 songIndex=0
 for song in data.text.to_list():
     goodInputSong=True
-    for words in song:
-        for char in words:
+    for word in song.split(" "):
+        for char in word:
             if (char not in acceptableChars):
                 goodInputSong=False
-        break;
+                break
     if goodInputSong:
         songCorpa+=song+"$"
     songIndex+=1
