@@ -24,3 +24,5 @@ with open("DataBase_Four.pickle","rb") as input_:
 LyricDataBase=dataBaseOne+" "+dataBaseTwo+" "+dataBaseThree+" "+dataBaseFour
 print("The size of the Final database is: "+str(len(LyricDataBase)/1e6)+
       " Million chars")
+with open("Data/LyricsDataBase.pickle","wb") as output_:
+    pickle.dump(LyricDataBase,output_)
